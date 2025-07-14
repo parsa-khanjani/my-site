@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محمد پارسا خانجانی - طراح وب و هکر کلاه خاکستری</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        
+        :root {
+            --primary: #6b7280;
+            --secondary: #6b7280;
+            --accent: #6b7280;
+            --dark: #0f172a;
+            --darker: #020617;
+            --gray: #1e293b;
+            --light-gray: #334155;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            overflow-x: hidden;
+        }
+        
+        /* Hero Background */
+        .hero-bg {
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(107, 114, 128, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(107, 114, 128, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(107, 114, 128, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(107, 114, 128, 0.05) 50%, transparent 70%),
+                linear-gradient(-45deg, transparent 30%, rgba(107, 114, 128, 0.05) 50%, transparent 70%);
+            animation: hero-pulse 6s ease-in-out infinite;
+        }
+        
+        @keyframes hero-pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(1) { animation-delay: 0s; }
+        .floating-element:nth-child(2) { animation-delay: 2s; }
+        .floating-element:nth-child(3) { animation-delay: 4s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(90deg); }
+        }
+        
+        /* Cards */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .glass-card:hover::before {
+            left: 100%;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(99, 102, 241, 0.2);
+        }
+        
+        /* Buttons */
+        .modern-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+        
+        .modern-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .modern-btn:hover::before {
+            left: 100%;
+        }
+        
+        .modern-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+        
+        .modern-btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .modern-btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+        }
+        
+        /* Navigation */
+        .nav-glass {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Skills Progress */
+        .skill-progress {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            animation: skill-glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes skill-glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.8); }
+        }
+        
+        .skill-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: skill-shine 2s infinite;
+        }
+        
+        @keyframes skill-shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in-up.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in-left.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in-right.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Typing Animation */
+        .typing {
+            border-left: 3px solid var(--primary);
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: var(--primary); }
+            51%, 100% { border-color: transparent; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-bg {
+                min-height: 100vh;
+            }
+            
+            .glass-card {
+                margin-bottom: 1rem;
+            }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+        }
+        
+        /* Icon Animations */
+        .icon-bounce {
+            animation: icon-bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes icon-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Particle Effect */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: particle-float 8s linear infinite;
+        }
+        
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Floating Particles -->
+    <div class="fixed inset-0 pointer-events-none z-0" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full nav-glass z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 lg:px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold gradient-text">
+                    <i class="fas fa-code ml-2"></i>
+                    پارسا خانجانی
+                </div>
+                <div class="hidden lg:flex space-x-8 space-x-reverse">
+                    <a href="#home" class="nav-link hover:text-gray-400">خانه</a>
+                    <a href="#about" class="nav-link hover:text-gray-400">درباره من</a>
+                    <a href="#skills" class="nav-link hover:text-gray-400">مهارت‌ها</a>
+                    <a href="#experience" class="nav-link hover:text-gray-400">تجربیات</a>
+                    <a href="#projects" class="nav-link hover:text-gray-400">پروژه‌ها</a>
+                    <a href="#contact" class="nav-link hover:text-gray-400">تماس</a>
+                </div>
+                <button id="mobile-menu-btn" class="lg:hidden text-2xl text-gray-400">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 right-0 w-80 h-full bg-slate-900 bg-opacity-95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 z-50 lg:hidden">
+        <div class="p-6">
+            <button id="close-menu" class="text-2xl mb-8 float-left text-gray-400">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="clear-both space-y-6 mt-12">
+                <a href="#home" class="block py-3 text-lg hover:text-gray-400 transition-colors">خانه</a>
+                <a href="#about" class="block py-3 text-lg hover:text-gray-400 transition-colors">درباره من</a>
+                <a href="#skills" class="block py-3 text-lg hover:text-gray-400 transition-colors">مهارت‌ها</a>
+                <a href="#experience" class="block py-3 text-lg hover:text-gray-400 transition-colors">تجربیات</a>
+                <a href="#projects" class="block py-3 text-lg hover:text-gray-400 transition-colors">پروژه‌ها</a>
+                <a href="#contact" class="block py-3 text-lg hover:text-gray-400 transition-colors">تماس</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
+        <!-- Floating Elements -->
+        <div class="floating-element top-20 left-20 w-20 h-20 rounded-full bg-gradient-to-r from-gray-500 to-gray-600 opacity-20"></div>
+        <div class="floating-element top-40 right-32 w-16 h-16 rounded-full bg-gradient-to-r from-gray-500 to-gray-600 opacity-20"></div>
+        <div class="floating-element bottom-32 left-40 w-12 h-12 rounded-full bg-gradient-to-r from-gray-500 to-gray-600 opacity-20"></div>
+        
+        <div class="container mx-auto px-4 lg:px-6 text-center relative z-10">
+            <div class="fade-in-up">
+                <!-- Avatar -->
+                <div class="w-32 h-32 lg:w-40 lg:h-40 mx-auto mb-6 relative">
+                    <div class="w-full h-full rounded-full glass-card p-1">
+                        <img src="https://via.placeholder.com/200x200/6366f1/ffffff?text=P" alt="پارسا خانجانی" class="w-full h-full rounded-full object-cover">
+                    </div>
+                    <div class="absolute -top-2 -right-2 w-6 h-6 bg-gray-500 rounded-full animate-ping"></div>
+                    <div class="absolute -bottom-2 -left-2 w-4 h-4 bg-gray-500 rounded-full animate-bounce"></div>
+                </div>
+
+                <!-- Name -->
+                <h1 class="text-3xl lg:text-6xl font-black mb-4 gradient-text">
+                    محمد پارسا خانجانی
+                </h1>
+
+                <!-- Typing Animation -->
+                <div class="text-lg lg:text-2xl mb-6 h-10 flex items-center justify-center">
+                    <span id="typing-text" class="typing text-gray-400"></span>
+                </div>
+
+                <!-- Description -->
+                <p class="text-base lg:text-lg text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
+                    طراح وب حرفه‌ای و هکر کلاه خاکستری با بیش از ۲ سال تجربه در ساخت وبسایت‌های مدرن و امنیت سایبری
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#contact" class="modern-btn px-6 py-3 rounded-lg text-base font-semibold transition-all duration-300">
+                        <i class="fas fa-envelope ml-2"></i>
+                        تماس با من
+                    </a>
+                    <a href="#projects" class="modern-btn-outline px-6 py-3 rounded-lg text-base font-semibold transition-all duration-300">
+                        <i class="fas fa-rocket ml-2"></i>
+                        مشاهده پروژه‌ها
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 lg:py-24 relative">
+        <div class="container mx-auto px-4 lg:px-6">
+            <h2 class="text-3xl lg:text-5xl font-bold text-center mb-12 fade-in-up gradient-text">
+                <i class="fas fa-user ml-3"></i>
+                درباره من
+            </h2>
+            
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <!-- Code Block -->
+                <div class="fade-in-left">
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="flex space-x-2 space-x-reverse">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            </div>
+                            <span class="text-gray-400 text-sm mr-4">about_me.js</span>
+                        </div>
+                        <div class="font-mono text-sm leading-relaxed text-left" dir="ltr">
+                            <div class="text-purple-400">const</div>
+                            <div class="text-cyan-400">developer</div>
+                            <div class="text-white">= {</div>
+                            <div class="ml-4">
+                                <div class="text-indigo-400">name: <span class="text-green-400">"Mohammad Parsa Khanjani"</span>,</div>
+                                <div class="text-indigo-400">role: <span class="text-green-400">"Web Designer & Grey Hat Hacker"</span>,</div>
+                                <div class="text-indigo-400">location: <span class="text-green-400">"Tehran, Iran"</span>,</div>
+                                <div class="text-indigo-400">experience: <span class="text-green-400">"2+ years"</span>,</div>
+                                <div class="text-indigo-400">skills: [</div>
+                                <div class="ml-4">
+                                    <div class="text-green-400">"Web Design",</div>
+                                    <div class="text-green-400">"Frontend Development",</div>
+                                    <div class="text-green-400">"UI/UX Design",</div>
+                                    <div class="text-green-400">"Cybersecurity",</div>
+                                    <div class="text-green-400">"Ethical Hacking"</div>
+                                </div>
+                                <div class="text-indigo-400">],</div>
+                                <div class="text-indigo-400">passion: <span class="text-green-400">"Creating beautiful & secure websites"</span></div>
+                            </div>
+                            <div class="text-white">};</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="fade-in-right">
+                    <div class="space-y-4 text-base leading-relaxed">
+                        <p class="text-gray-300">
+                            سلام! من محمد پارسا خانجانی هستم، یک <span class="text-gray-400 font-semibold">طراح وب حرفه‌ای</span> و <span class="text-gray-400 font-semibold">هکر کلاه خاکستری</span> با بیش از ۲ سال تجربه.
+                        </p>
+                        
+                        <p class="text-gray-300">
+                            تخصص اصلی من در <span class="text-gray-400 font-semibold">طراحی و توسعه وبسایت‌های مدرن</span> است. وبسایت‌هایی که نه تنها زیبا و کاربردی هستند، بلکه از نظر امنیتی نیز در بالاترین سطح قرار دارند.
+                        </p>
+                        
+                        <p class="text-gray-300">
+                            در کنار طراحی وب، به عنوان یک هکر اخلاقی، در زمینه امنیت سایبری نیز فعالیت می‌کنم و به بهبود امنیت سیستم‌ها کمک می‌کنم.
+                        </p>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-2 gap-4 mt-8">
+                        <div class="glass-card p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-gray-400 mb-1">2+</div>
+                            <div class="text-gray-400 text-sm">سال تجربه</div>
+                        </div>
+                        <div class="glass-card p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-gray-400 mb-1">50+</div>
+                            <div class="text-gray-400 text-sm">پروژه موفق</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 lg:py-24 relative">
+        <div class="container mx-auto px-4 lg:px-6">
+            <h2 class="text-3xl lg:text-5xl font-bold text-center mb-12 fade-in-up gradient-text">
+                <i class="fas fa-tools ml-3"></i>
+                مهارت‌های فنی
+            </h2>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Web Design Skills -->
+                <div class="fade-in-left">
+                    <h3 class="text-xl lg:text-2xl font-bold mb-6 text-indigo-400">
+                        <i class="fas fa-palette ml-2"></i>
+                        طراحی و توسعه وب
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">HTML/CSS</span>
+                                <span class="text-indigo-400 text-sm">95%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 95%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">JavaScript</span>
+                                <span class="text-cyan-400 text-sm">92%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 92%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">React/Vue.js</span>
+                                <span class="text-cyan-400 text-sm">88%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 88%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">UI/UX Design</span>
+                                <span class="text-indigo-400 text-sm">90%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 90%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">Responsive Design</span>
+                                <span class="text-indigo-400 text-sm">94%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 94%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">Node.js/Express</span>
+                                <span class="text-cyan-400 text-sm">86%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 86%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Programming Languages -->
+                <div class="fade-in-up">
+                    <h3 class="text-xl lg:text-2xl font-bold mb-6 text-cyan-400">
+                        <i class="fas fa-code ml-2"></i>
+                        زبان‌های برنامه‌نویسی
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">Python</span>
+                                <span class="text-indigo-400 text-sm">93%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 93%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">C/C++</span>
+                                <span class="text-indigo-400 text-sm">87%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 87%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">PHP</span>
+                                <span class="text-cyan-400 text-sm">85%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 85%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">Java</span>
+                                <span class="text-indigo-400 text-sm">85%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 85%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">SQL/Database</span>
+                                <span class="text-cyan-400 text-sm">88%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 88%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">Linux/Bash</span>
+                                <span class="text-cyan-400 text-sm">91%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 91%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">Computer Hardware</span>
+                                <span class="text-indigo-400 text-sm">89%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 89%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cybersecurity Skills -->
+                <div class="fade-in-right">
+                    <h3 class="text-xl lg:text-2xl font-bold mb-6 text-purple-400">
+                        <i class="fas fa-shield-alt ml-2"></i>
+                        امنیت سایبری
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">Penetration Testing</span>
+                                <span class="text-indigo-400 text-sm">89%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 89%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">Web Security</span>
+                                <span class="text-cyan-400 text-sm">92%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 92%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">Vulnerability Research</span>
+                                <span class="text-indigo-400 text-sm">86%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 86%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">Network Security</span>
+                                <span class="text-cyan-400 text-sm">85%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 85%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">Ethical Hacking</span>
+                                <span class="text-cyan-400 text-sm">87%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 87%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-sm">Malware Analysis</span>
+                                <span class="text-indigo-400 text-sm">85%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-bar" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 lg:py-24 relative">
+        <div class="container mx-auto px-4 lg:px-6">
+            <h2 class="text-3xl lg:text-5xl font-bold text-center mb-12 fade-in-up gradient-text">
+                <i class="fas fa-briefcase ml-3"></i>
+                تجربیات حرفه‌ای
+            </h2>
+            
+            <div class="max-w-4xl mx-auto space-y-8">
+                <!-- Web Designer -->
+                <div class="glass-card p-6 rounded-xl fade-in-left">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl lg:text-2xl font-bold mb-1 text-indigo-400">
+                                <i class="fas fa-laptop-code ml-2"></i>
+                                طراح و توسعه‌دهنده وب
+                            </h3>
+                            <p class="text-gray-400 text-sm">طراحی وبسایت‌های مدرن و کاربردی</p>
+                        </div>
+                        <div class="text-gray-500 mt-2 lg:mt-0 text-sm">
+                            <i class="fas fa-calendar-alt ml-2"></i>
+                            ۲۰۲۲ - اکنون
+                        </div>
+                    </div>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-left text-indigo-400 mt-1 ml-3 text-xs"></i>
+                            طراحی و توسعه بیش از ۵۰ وبسایت مدرن و ریسپانسیو
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-left text-indigo-400 mt-1 ml-3 text-xs"></i>
+                            تخصص در UI/UX Design و ایجاد تجربه کاربری بهینه
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-left text-indigo-400 mt-1 ml-3 text-xs"></i>
+                            کار با فریمورک‌های مدرن مانند React، Vue.js و Angular
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-left text-indigo-400 mt-1 ml-3 text-xs"></i>
+                            بهینه‌سازی عملکرد وبسایت‌ها برای سرعت و SEO
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Grey Hat Hacker -->
+                <div class="glass-card p-6 rounded-xl fade-in-right">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl lg:text-2xl font-bold mb-1 text-purple-400">
+                                <i class="fas fa-user-secret ml-2"></i>
+                                هکر کلاه خاکستری
+                            </h3>
+                            <p class="text-gray-400 text-sm">تحقیق امنیت و گزارش مسئولانه</p>
+                        </div>
+                        <div class="text-gray-500 mt-2 lg:mt-0 text-sm">
+                            <i class="fas fa-calendar-alt ml-2"></i>
+                            ۲۰۲۲ - اکنون
+                        </div>
+                    </div>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-left text-purple-400 mt-1 ml-3 text-xs"></i>
+                            کشف و گزارش مسئولانه آسیب‌پذیری‌ها در پلتفرم‌های بزرگ
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-left text-purple-400 mt-1 ml-3 text-xs"></i>
+                            تست امنیت وبسایت‌ها و اپلیکیشن‌های وب
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-left text-purple-400 mt-1 ml-3 text-xs"></i>
+                            مشاوره امنیتی برای شرکت‌ها و سازمان‌ها
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-left text-purple-400 mt-1 ml-3 text-xs"></i>
+                            آموزش اصول امنیت سایبری و هکینگ اخلاقی
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 lg:py-24 relative">
+        <div class="container mx-auto px-4 lg:px-6">
+            <h2 class="text-3xl lg:text-5xl font-bold text-center mb-12 fade-in-up gradient-text">
+                <i class="fas fa-rocket ml-3"></i>
+                پروژه‌ها و دستاوردها
+            </h2>
+            
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- GitLab Vulnerability -->
+                <div class="glass-card p-6 rounded-xl fade-in-left">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 mx-auto mb-3 rounded-full glass-card flex items-center justify-center">
+                            <i class="fab fa-gitlab text-3xl text-orange-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1">کشف آسیب‌پذیری GitLab</h3>
+                        <p class="text-gray-400 text-sm">Account Takeover Critical Vulnerability</p>
+                    </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed text-sm">
+                        شناسایی و گزارش مسئولانه آسیب‌پذیری بحرانی Account Takeover در سیستم بازنشانی رمز عبور GitLab که امکان دسترسی غیرمجاز به حساب‌های کاربری را فراهم می‌کرد.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="px-2 py-1 bg-indigo-600 text-white text-xs rounded-full">Critical Severity</span>
+                        <a href="https://hackerone.com/reports/2293343" target="_blank" class="modern-btn-outline px-3 py-1 rounded-lg text-xs">
+                            <i class="fas fa-external-link-alt ml-1"></i>
+                            مشاهده گزارش
+                        </a>
+                    </div>
+                </div>
+
+                <!-- FIRA Competition -->
+                <div class="glass-card p-6 rounded-xl fade-in-right">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 mx-auto mb-3 rounded-full glass-card flex items-center justify-center">
+                            <i class="fas fa-trophy text-3xl text-yellow-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1">مسابقات FIRA</h3>
+                        <p class="text-gray-400 text-sm">رباتیک و هوش مصنوعی</p>
+                    </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed text-sm">
+                        تجربه شرکت در مسابقات فیرا (FIRA) از سال ۲۰۲۲ تا ۲۰۲۵، همراه با کسب یک عنوان اول کشوری (المپیک فناوری) و دو عنوان دوم جهانی (مسابقات اوراسیا و کانادا) در لیگ Smart Home.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="px-2 py-1 bg-indigo-600 text-white text-xs rounded-full">اول کشوری - دوم جهانی</span>
+                        <a href="https://firaworldcup.org" target="_blank" class="modern-btn-outline px-3 py-1 rounded-lg text-xs">
+                            <i class="fas fa-external-link-alt ml-1"></i>
+                            وبسایت رسمی
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 lg:py-24 relative">
+        <div class="container mx-auto px-4 lg:px-6">
+            <h2 class="text-3xl lg:text-5xl font-bold text-center mb-12 fade-in-up gradient-text">
+                <i class="fas fa-envelope ml-3"></i>
+                ارتباط با من
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Email -->
+                    <div class="glass-card p-6 rounded-xl text-center fade-in-up">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-500 flex items-center justify-center">
+                            <i class="fas fa-envelope text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3">ایمیل</h3>
+                        <a href="mailto:khanjanyparsa@gmail.com" class="text-gray-400 hover:text-indigo-400 transition-colors text-sm">
+                            khanjanyparsa@gmail.com
+                        </a>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="glass-card p-6 rounded-xl text-center fade-in-up">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-500 flex items-center justify-center">
+                            <i class="fas fa-phone text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3">تلفن</h3>
+                        <a href="tel:09981266740" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">
+                            ۰۹۹۸۱۲۶۶۷۴۰
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="glass-card p-8 rounded-xl text-center fade-in-up mt-8">
+                    <h3 class="text-xl font-semibold mb-6">شبکه‌های اجتماعی</h3>
+                    <div class="flex justify-center items-center space-x-8 space-x-reverse">
+                        <a href="https://linkedin.com/in/parsa-khanjani" target="_blank" class="group">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <i class="fab fa-linkedin text-2xl text-white"></i>
+                            </div>
+                            <p class="text-sm text-gray-400 mt-2 group-hover:text-blue-400 transition-colors">LinkedIn</p>
+                        </a>
+                        <a href="https://github.com/parsa-khanjani" target="_blank" class="group">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-gray-600 to-gray-700 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <i class="fab fa-github text-2xl text-white"></i>
+                            </div>
+                            <p class="text-sm text-gray-400 mt-2 group-hover:text-gray-300 transition-colors">GitHub</p>
+                        </a>
+                        <a href="https://t.me/Th_PRSA" target="_blank" class="group">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-400 to-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <i class="fab fa-telegram text-2xl text-white"></i>
+                            </div>
+                            <p class="text-sm text-gray-400 mt-2 group-hover:text-blue-400 transition-colors">Telegram</p>
+                        </a>
+                        <a href="https://instagram.com/parsa.khanjany" target="_blank" class="group">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-cyan-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <i class="fab fa-instagram text-2xl text-white"></i>
+                            </div>
+                            <p class="text-sm text-gray-400 mt-2 group-hover:text-cyan-400 transition-colors">Instagram</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-800 relative">
+        <div class="container mx-auto px-4 lg:px-6 text-center">
+            <p class="text-gray-500 text-sm">
+                © ۲۰۲۴ محمد پارسا خانجانی. تمامی حقوق محفوظ است.
+            </p>
+            <p class="text-gray-600 text-xs mt-1">
+                ساخته شده با ❤️
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Typing Animation
+        const texts = [
+            "طراح وب حرفه‌ای",
+            "توسعه‌دهنده فرانت‌اند", 
+            "متخصص UI/UX",
+            "هکر کلاه خاکستری",
+            "متخصص امنیت سایبری"
+        ];
+        
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typing-text');
+
+        function typeText() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+
+            const speed = isDeleting ? 50 : 100;
+            setTimeout(typeText, speed);
+        }
+
+        // Floating Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                
+                particlesContainer.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 8000);
+            }
+            
+            setInterval(createParticle, 300);
+        }
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+
+        // Close mobile menu when clicking on links
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animation elements
+        document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                nav.style.background = 'rgba(15, 23, 42, 0.8)';
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            typeText();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95e18500f1bed0c9',t:'MTc1MjMzMzU3My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
